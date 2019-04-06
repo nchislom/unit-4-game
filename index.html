@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- bootstrap css cdn -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script|Seaweed+Script" rel="stylesheet"> 
+
+    <!-- bootstrap js cdn -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    
+    <title>Battle of the Old Ones</title>
+</head>
+<body>
+    <h1 class="centered">Battle of the Old Ones</h1>
+    
+    <div id="intro-screen">
+        <p>Welcome traveller... Begin by choosing your dark avatar to battle your way to summit of R'lyeh,
+            where you will take your seat as the supreme being of awful, cosmic power! Fail, and be banished
+            to the lower-most reaches of howling agony...</p>
+        <button type="button" class="btn btn-primary play-button">Begin</button>
+    </div>
+
+    <div id="lost-screen">
+        <h2>Game Over</h2>
+        <button type="button" class="btn btn-primary reset-button">Play Again?</button>
+    </div>
+
+    <div id="win-screen">
+        <h2>Victorious!</h2>
+        <button type="button" class="btn btn-primary reset-button">Play Again?</button>
+        <img src="" alt="Winning Pic">
+        <p>You reign supreme over the smoldering ashes of your enemies and may ascend to the cosmic void to sleep and to feed...</p>
+    </div>
+
+    <div id="game-screen">
+        <div class="container" id="character-container">
+            <!-- Character cards arranged in a row -->
+            <div class="row justify-content-center" id="character-selection">
+
+                <!-- Character 0 -->
+                <div class="card col-2 character-card" id="card0" data="0">
+                    <img src="" class="card-img-top" id="img0" alt="character image">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span class="character-0-name"></span><br>
+                            <span class="character-0-hp"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Character 1 -->
+                <div class="card col-2 character-card" id="card1" data="1">
+                    <img src="" class="card-img-top" id="img1" alt="character image">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span class="character-1-name"></span><br>
+                            <span class="character-1-hp"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Character 2 -->
+                <div class="card col-2 character-card" id="card2" data="2">
+                    <img src="" class="card-img-top" id="img2" alt="character image">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span class="character-2-name"></span><br>
+                            <span class="character-2-hp"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Character 3 -->
+                <div class="card col-2 character-card" id="card3" data="3">
+                        <img src="" class="card-img-top" id="img3" alt="character image">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <span class="character-3-name"></span><br>
+                                <span class="character-3-hp"></span>
+                            </p>
+                        </div>
+                </div>
+
+                <!-- Character 4 -->
+                <div class="card col-2 character-card" id="card4" data="4">
+                    <img src="" class="card-img-top" id="img4" alt="character image">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span class="character-4-name"></span><br>
+                            <span class="character-4-hp"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Character 5 -->
+                <div class="card col-2 character-card" id="card5" data="5">
+                    <img src="" class="card-img-top" id="img5" alt="character image">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span class="character-5-name"></span><br>
+                            <span class="character-5-hp"></span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container" id="game-container">
+
+            <!-- Main opponent/vs area -->
+            <div class="row arena-area justify-content-center">
+                
+                <!-- Player/User -->
+                <div class="col-4">
+                    <h2 class="centered">Player</h2>
+                    <div id="player-area" class="character-area"></div>
+                </div>
+
+                <!-- Attack Button -->
+                <div class="col-2 button-column align-middle justify-content-center">
+                    <button type="button" class="btn btn-primary disabled" id="attack-button">ATTACK!</button>
+                </div>
+
+                <!-- NPC/Opponent -->
+                <div class="col-4">
+                    <h2 class="centered">Opponent</h2>
+                    <div id="opponent-area" class="character-area"></div>
+                </div>
+
+            </div>
+
+            <!-- Attack action button centered on row -->
+            <!-- <div class="row button-row justify-content-center">
+                <button type="button" class="btn btn-primary disabled" id="attack-button">Attack!</button>
+            </div> -->
+
+        </div>
+    </div>
+    <script src="assets/javascript/game.js" type="text/javascript"></script>
+</body>
+</html>

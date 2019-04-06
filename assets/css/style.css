@@ -1,0 +1,88 @@
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: black;
+    background-image: url("../images/cosmos.jpg");
+    background-size: 100% 100%;
+    color: darkgrey;
+    font-size: 1.2em;
+    /* font-family: 'Nanum Brush Script', cursive; */
+}
+
+h1 {
+    background-color: black;
+    color: darkorchid;
+    margin: 0;
+    padding: .5em;
+    font-family: 'Seaweed Script', cursive;
+    border-bottom: 3px solid darkorchid;
+    font-size: 3em;
+}
+
+.border {
+    display: block;
+    /* height: 500px; */
+    /* border: 5px solid black; */
+}
+
+.card-text {
+    text-align: center;
+}
+
+
+
+.nice-border {
+    border: 1px solid #333333;
+    border-radius: 2px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.character-area {
+    height: 95%;
+    padding: 0;
+}
+
+#attack-button {
+    margin: 5em auto;
+    width: 100%;
+}
+
+.row {
+    margin-bottom: 2em;
+}
+
+.button-column {
+    height: 500px;
+    padding-top: 5em;
+}
+
+.arena-area {
+    padding-top: 5em;
+}
+
+#character-container {
+    height: 225px;
+}
+
+#intro-screen {
+    text-align: center;
+    width: 50%;
+    margin: 9em auto;
+}
+#game-screen {
+    display: none;
+}
+
+#lost-screen {
+    display: none;
+}
+
+#win-screen {
+    display: none;
+}
