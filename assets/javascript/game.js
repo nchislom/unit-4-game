@@ -28,12 +28,12 @@ function character(name, hp, ap, cp, img){
 
 // Player declarations
 var playableCharacters = {
-    character0: new character("Cthulhu",        150, 30, 20, "assets/images/cthulhu.jpg"),
-    character1: new character("Shoggoth",       165, 15, 13, "assets/images/shoggoth.jpg"),
-    character2: new character("Mi-Go",          130, 40, 29, "assets/images/migo.jpg"),
-    character3: new character("Yog-Sothoth",    205, 10, 5, "assets/images/yog-sothoth.jpg"),
-    character4: new character("Azathoth",       170, 20, 12, "assets/images/azathoth.jpg"),
-    character5: new character("Shub-Niggurath", 100, 50, 37, "assets/images/shub-niggurath.jpg")
+    character0: new character("Cthulhu",        160, 50, 10, "assets/images/cthulhu.jpg"),
+    character1: new character("Shoggoth",       175, 35, 13, "assets/images/shoggoth.jpg"),
+    character2: new character("Mi-Go",          140, 40, 12, "assets/images/migo.jpg"),
+    character3: new character("Yog-Sothoth",    205, 45, 5, "assets/images/yog-sothoth.jpg"),
+    character4: new character("Azathoth",       170, 49, 12, "assets/images/azathoth.jpg"),
+    character5: new character("Shub-Niggurath", 120, 47, 11, "assets/images/shub-niggurath.jpg")
 }
 
 var playerSelection, opponentSelection, cardSelection;
@@ -44,7 +44,6 @@ var resetGame = function(){
 }
 
 var playGame = function(){
-console.log("playGame function fired...");
 introScreen.css({"display": "none"});
 gameScreen.css({"display": "static"});
 }
@@ -55,7 +54,8 @@ $(document).ready(function() {
     var introScreen = $("#intro-screen");
     var gameScreen = $("#game-screen");
     var winScreen = $("#win-screen");
-    var lostScreen = $("#lost-screen");    
+    var lostScreen = $("#lost-screen");
+    var directions = $(".directions");    
 
     // Hooking into empty DOM elements
     $(".character-0-name").text(playableCharacters.character0.charName);
@@ -91,12 +91,14 @@ $(document).ready(function() {
         location.reload();
     });
     
+    directions.text("Choose a character...");
+
     // Character click handler logic
     $(".card").on("click", function(){
         
         // If player has not selected a character...
         if ($("#player-area").children().length === 0){
-            
+
             // Hook into ID of card to change class attribute
             cardSelection = "#card" + $(this).attr("data");
             $(cardSelection).removeClass("col-2");
@@ -108,6 +110,7 @@ $(document).ready(function() {
             console.log(playerSelection);
             console.log(playerHpText);
             $(this).appendTo("#player-area");
+            directions.text("Choose an opponent...");
     
         } else if ($("#opponent-area").children().length === 0){
             // If an opponent has not been selected
@@ -121,17 +124,20 @@ $(document).ready(function() {
             opponentSelection = "character" + $(this).attr("data");
             opponentHpText = ".character-" + $(this).attr("data") + "-hp";
             $(this).appendTo("#opponent-area");
+            directions.text("FIGHT!!");
         }
     });
 
     $("#attack-button").on("click", function() {
-        // Get current HP
-        playerHp = playableCharacters[playerSelection].healthPoints;
-        opponentHp = playableCharacters[opponentSelection].healthPoints;
-        // Damage Calculation!
-        playableCharacters[opponentSelection].healthPoints -= playableCharacters[playerSelection].attackPoints;
-        playableCharacters[playerSelection].healthPoints -= playableCharacters[opponentSelection].counterPoints;
-        gameResult();
+        if( $("#opponent-area").children().length == 1){
+            // Get current HP
+            playerHp = playableCharacters[playerSelection].healthPoints;
+            opponentHp = playableCharacters[opponentSelection].healthPoints;
+            // Damage Calculation!
+            playableCharacters[opponentSelection].healthPoints -= playableCharacters[playerSelection].attackPoints;
+            playableCharacters[playerSelection].healthPoints -= playableCharacters[opponentSelection].counterPoints;
+            gameResult();
+        }
     });
 
     var gameResult = function(){
@@ -144,18 +150,20 @@ $(document).ready(function() {
         // Game Lost vs Round Won Vs Game Won (All Enemies Defeated)
         if(playableCharacters[playerSelection].healthPoints <= 0){
             gameScreen.css({"display": "none"});
-            lostScreen.css({"display": "none"});
+            lostScreen.css({"display": "block"});
         
         } else if ( (playableCharacters[playerSelection].healthPoints > 0) &&
                     (playableCharacters[opponentSelection].healthPoints <= 0) &&
                     ( $("#character-selection").children().length) > 0 ) {
-            alert("You Won! Pick Another Opponent!");
             $("#opponent-area").empty();
-
+            playableCharacters[playerSelection].attackPoints += 15;
+            directions.text("You won this round...Choose another opponent!");
+    
         } else if ( (playableCharacters[opponentSelection].healthPoints > 0) &&
         ( $("#character-selection").children().length) <= 0 ) {
+            $("#winner-pic").attr("src", playableCharacters[playerSelection].imageName);
             gameScreen.css({"display": "none"});
-            winScreen.css({"display": "static"});
+            winScreen.css({"display": "block"});
         }
     }
 
